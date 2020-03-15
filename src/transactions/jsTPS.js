@@ -21,6 +21,7 @@ export class jsTPS {
         this.mostRecentTransaction = -1;
         this.performingDo = false;
         this.performingUndo = false;
+        this.performingRedo = false;
     }
 
     isPerformingDo() {
@@ -29,6 +30,10 @@ export class jsTPS {
 
     isPerformingUndo() {
         return this.performingUndo;
+    }
+
+    isPerformingRedo() {
+        return this.performingRedo;
     }
 
     hasTransactionToRedo() {
@@ -80,6 +85,16 @@ export class jsTPS {
             transaction.undoTransaction();
             this.mostRecentTransaction--;
             this.performingUndo = false;
+        }
+    }
+
+    redoTransaction() {
+        if (this.hasTransactionToRedo()) {
+            this.performingRedo = true;
+            let transaction = this.transactions[this.mostRecentTransaction];
+            transaction.redoTransaction();
+            this.mostRecentTransaction++;
+            this.performingRedo = false;
         }
     }
 

@@ -34,8 +34,10 @@ export class EditScreen extends Component {
                     <TextEditSidebar
                         logo={this.props.logo}
                         changeLogoCallback={this.props.changeLogoCallback}
-                        undoCallback={this.props.undoCallback}                                          
-                        canUndo={this.props.canUndo}                         
+                        undoCallback={this.props.undoCallback}
+                        redoCallback={this.props.redoCallback}                                          
+                        canUndo={this.props.canUndo}        
+                        canRedo={this.props.canRedo}                 
                     />
                     <TextEditWorkspace
                         logo={this.props.logo} />

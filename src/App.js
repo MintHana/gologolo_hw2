@@ -64,6 +64,14 @@ class App extends Component {
   componentDidMount = () => {
     // THIS METHOD GETS CALLED BEFORE THE FIRST RENDER
     console.log("App did mount");
+
+    function KeyPress(e) {
+      var eventobj = window.event? window.event : e
+      if (eventobj.keyCode === 90 && eventobj.ctrlKey) alert("Ctrl+z");
+      else if (eventobj.keyCode === 88 && eventobj.ctrlKey) alert("Ctrl+X");
+    }
+
+    document.addEventListener('keydown', KeyPress)
   }
 
   componentWillUnmount = () => {
@@ -173,6 +181,10 @@ class App extends Component {
     this.tps.undoTransaction();
   }
 
+  redo = () => {
+    this.tps.redoTransaction();
+  }
+
   /**
    * resetTransactions - This method clears all the transactions in
    * the undo/redo stack, which should be done every time the logo
@@ -189,6 +201,10 @@ class App extends Component {
    */
   canUndo = () => {
     return this.tps.hasTransactionToUndo();
+  }
+
+  canRedo = () => {
+    return this.tps.hasTransactionToRedo();
   }
 
   // THERE ARE SEVEN FUNCTIONS FOR UPDATING THE App state, TWO OF
@@ -345,8 +361,9 @@ class App extends Component {
           goToHomeCallback={this.goToHomeScreen}                    // NAVIGATION CALLBACK
           changeLogoCallback={this.buildChangeLogoTransaction}  // TRANSACTION CALLBACK
           undoCallback={this.undo}                        // TRANSACTION CALLBACK                       
+          redoCallback={this.redo}
           canUndo={this.canUndo}                          // TRANSACTION CALLBACK
-
+          canRedo={this.canRedo}
         />;
       default:
         return <div></div>;
