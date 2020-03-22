@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import Navbar from './Navbar.js'
 import TextEditSidebar from './TextEditSidebar.js'
 import TextEditWorkspace from './TextEditWorkspace.js'
+import { Modal } from 'react-materialize';
+import { Button } from 'react-materialize';
 
 export class EditScreen extends Component {
     constructor(props) {
@@ -35,7 +37,7 @@ export class EditScreen extends Component {
                         logo={this.props.logo}
                         changeLogoCallback={this.props.changeLogoCallback}
                         undoCallback={this.props.undoCallback}
-                        redoCallback={this.props.redoCallback}                                          
+                        redoCallback={this.props.redoCallback}                                         
                         canUndo={this.props.canUndo}        
                         canRedo={this.props.canRedo}                 
                     />

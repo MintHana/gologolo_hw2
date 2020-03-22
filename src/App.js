@@ -64,11 +64,29 @@ class App extends Component {
   componentDidMount = () => {
     // THIS METHOD GETS CALLED BEFORE THE FIRST RENDER
     console.log("App did mount");
-
-    function KeyPress(e) {
+    var KeyPress = (e) => {
       var eventobj = window.event? window.event : e
-      if (eventobj.keyCode === 90 && eventobj.ctrlKey) alert("Ctrl+z");
-      else if (eventobj.keyCode === 88 && eventobj.ctrlKey) alert("Ctrl+X");
+      if(this.state.currentScreen === AppScreen.EDIT_SCREEN)
+      {
+        if (eventobj.keyCode === 90 && eventobj.ctrlKey) 
+        {
+            console.log("Ctrl + Z");
+            if (this.canUndo())
+            {
+              this.undo();
+              this.forceUpdate();
+            }
+        }
+        else if (eventobj.keyCode === 88 && eventobj.ctrlKey) 
+        {
+            console.log("Ctrl + X");
+            if (this.canRedo())
+            {
+              this.redo();
+              this.forceUpdate();
+            }
+        }
+      }
     }
 
     document.addEventListener('keydown', KeyPress)
@@ -362,6 +380,7 @@ class App extends Component {
           changeLogoCallback={this.buildChangeLogoTransaction}  // TRANSACTION CALLBACK
           undoCallback={this.undo}                        // TRANSACTION CALLBACK                       
           redoCallback={this.redo}
+          editTextCallback={this.editText}
           canUndo={this.canUndo}                          // TRANSACTION CALLBACK
           canRedo={this.canRedo}
         />;

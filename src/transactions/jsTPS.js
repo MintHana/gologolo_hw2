@@ -12,6 +12,10 @@ export class jsTPS_Transaction {
     undoTransaction() {
         console.log("undoTransaction - MISSING IMPLEMENTATION");
     }
+
+    redoTransaction() {
+        console.log("redoTransaction - MISSING IMPLEMENTATION");
+    }
 }
 
 export class jsTPS {
@@ -91,7 +95,7 @@ export class jsTPS {
     redoTransaction() {
         if (this.hasTransactionToRedo()) {
             this.performingRedo = true;
-            let transaction = this.transactions[this.mostRecentTransaction];
+            let transaction = this.transactions[this.mostRecentTransaction+1];
             transaction.redoTransaction();
             this.mostRecentTransaction++;
             this.performingRedo = false;
