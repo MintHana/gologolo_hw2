@@ -168,7 +168,6 @@ class TextEditSidebar extends Component {
         let redoDisabled = !this.props.canRedo();
         let undoClass = "waves-effect waves-light btn-small";
         let redoClass = "waves-effect waves-light btn-small";
-        let saveClass = "waves-effect waves-light btn-small";
         if (undoDisabled)
             undoClass += " disabled";
         if (redoDisabled)
@@ -211,36 +210,6 @@ class TextEditSidebar extends Component {
                         </Modal>
                         <button className={undoClass} onClick={this.handleUndo}>Undo</button>
                         <button className={redoClass} onClick={this.handleRedo}>redo</button>
-                        <Modal
-                            actions={[
-                                <Button flat modal="close" node="button" waves="green" onClick={this.handleDelete}>YES</Button>,
-                                <Button flat modal="close" node="button" waves="green">NO</Button>
-                            ]}
-                            bottomSheet={false}
-                            fixedFooter={false}
-                            header="Delete Confirmation"
-                            id="modal-0"
-                            options={{
-                                dismissible: true,
-                                endingTop: '10%',
-                                inDuration: 200,
-                                onCloseEnd: null,
-                                onCloseStart: null,
-                                onOpenEnd: null,
-                                onOpenStart: null,
-                                opacity: 0.5,
-                                outDuration: 200,
-                                preventScrolling: true,
-                                startingTop: '0%'
-                            }}
-                            trigger={<Button node="button">Delete</Button>}
-                            >
-                            <p>
-                                <div>
-                                    Are you sure you want to delete this Logo?
-                                </div>
-                            </p>
-                        </Modal>
                     </div>
                 </div>
                 <div className="card blue-grey darken-1">

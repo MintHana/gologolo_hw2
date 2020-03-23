@@ -285,7 +285,8 @@ class App extends Component {
 
   // DELETE THE LOGO WITH logoKey 
   deleteLogo = (logoKey) => {
-    console.log("logo to delete: " + logoKey);
+    console.log("logo to delete: ");
+    console.log(logoKey);
 
     // UPDATE THE LIST OF LOGOS, REMOVING LOGO
     const nextLogos = this.state.logos.filter(testLogo =>
