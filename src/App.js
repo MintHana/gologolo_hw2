@@ -26,7 +26,7 @@ export const LogoDefaults = {
   FONT_SIZE : 24,
   BACK_COLOR : "#FFFFFF",
   BORDER_COLOR : "#00FF00",
-  BORDER_RADIUS : "#0000FF",
+  BORDER_RADIUS : 50,
   BORDER_THICKNESS : 4,
   PADDING : 6,
   MARGIN : 8
@@ -408,6 +408,7 @@ class App extends Component {
           editTextCallback={this.editText}
           canUndo={this.canUndo}                          // TRANSACTION CALLBACK
           canRedo={this.canRedo}
+          deleteCallback={this.deleteLogo}
         />;
       default:
         return <div></div>;
