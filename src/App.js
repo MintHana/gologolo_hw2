@@ -23,7 +23,13 @@ export const TransactionType = {
 export const LogoDefaults = {
   TEXT : "goLogoLo Logo",
   TEXT_COLOR : "#FF0000",
-  FONT_SIZE : 24
+  FONT_SIZE : 24,
+  BACK_COLOR : "#FFFFFF",
+  BORDER_COLOR : "#00FF00",
+  BORDER_RADIUS : "#0000FF",
+  BORDER_THICKNESS : 4,
+  PADDING : 6,
+  MARGIN : 8
 }
 
 // App IS THE ROOT REACT COMPONENT
@@ -171,15 +177,26 @@ class App extends Component {
    * to do the actual work of changing the logo. Note that this function will also
    * then add the built transaction to the stack and execute it.
    */
-  buildChangeLogoTransaction = (oldLogo, logoKey, newText, newTextColor, newFontSize) => {
+  buildChangeLogoTransaction = (oldLogo, logoKey, newText, newTextColor, newFontSize, newBackColor, newBordColor, newBordRadius, newBordThickness, newPadding, newMargin) => {
     // THIS WILL BE THE LOGO AFTER THE CHANGE HAPPENS, NOTE WE BUILD
     // AN ENTIRELY NEW LOGO EACH TIME BUT IT SHOULD KEEP THE SAME KEY
     let postEditLogo = {
       key: logoKey,
       text: newText,
       textColor: newTextColor,
-      fontSize: newFontSize
+      fontSize: newFontSize,
+      backColor: newBackColor,
+      borderColor : newBordColor,
+      borderRadius : newBordRadius,
+      borderThickness : newBordThickness,
+      padding : newPadding,
+      margin : newMargin
     };
+
+    console.log("old");
+    console.log(oldLogo);
+    console.log("new");
+    console.log(postEditLogo);
 
     // NOW BUILD THE TRANSACTION OBJECT
     let transaction = new ChangeLogo_Transaction(
@@ -255,7 +272,13 @@ class App extends Component {
       key: this.getHighKey(this.state.logos),
       text: LogoDefaults.TEXT,
       textColor: LogoDefaults.TEXT_COLOR,
-      fontSize: LogoDefaults.FONT_SIZE
+      fontSize: LogoDefaults.FONT_SIZE,
+      backColor: LogoDefaults.BACK_COLOR,
+      borderColor : LogoDefaults.BORDER_COLOR,
+      borderRadius : LogoDefaults.BORDER_RADIUS,
+      borderThickness : LogoDefaults.BORDER_THICKNESS,
+      padding : LogoDefaults.PADDING,
+      margin : LogoDefaults.MARGIN
     }
     return newLogo;
   }
@@ -302,7 +325,8 @@ class App extends Component {
     const nextLogoToEdit = nextLogos.find((testLogo) => {
       return (testLogo.key === this.state.currentLogo.key);
     });
-    console.log("nextLogoToEdit: " + nextLogoToEdit);
+    console.log("nextLogoToEdit: ");
+    console.log(nextLogoToEdit);
 
     // AND SET THE STATE, WHICH SHOULD FORCE A render
     this.setState({
@@ -366,6 +390,7 @@ class App extends Component {
   // THE WHOLE PROGRAM
   render() {
     console.log("App render");
+    console.log(this.state);
     switch (this.state.currentScreen) {
       case AppScreen.HOME_SCREEN:
         return <HomeScreen
